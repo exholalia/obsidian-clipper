@@ -123,29 +123,6 @@ export async function saveToObsidian(
 
 	openObsidianUrl(obsidianUrl);
 	console.log('Obsidian URL:', obsidianUrl);
-	
-	/*
-	if (generalSettings.legacyMode) {
-		// Use the URI method
-		obsidianUrl += `&content=${encodeURIComponent(fileContent)}`;
-		console.log('Obsidian URL:', obsidianUrl);
-		openObsidianUrl(obsidianUrl);
-	} else {
-		// Use clipboard
-		navigator.clipboard.writeText(fileContent).then(() => {
-			obsidianUrl += `&clipboard`;
-			openObsidianUrl(obsidianUrl);
-			console.log('Obsidian URL:', obsidianUrl);
-		}).catch(err => {
-			console.log('Obsidian URL:', obsidianUrl);
-			console.error('Failed to copy content to clipboard:', err);
-			obsidianUrl += `&clipboard`;
-			obsidianUrl += `&content=${encodeURIComponent("There was an error creating the content. Make sure you are using Obsidian 1.7.2 or above.")}`;
-			openObsidianUrl(obsidianUrl);
-		});
-		
-	}
-	*/
 
 	function openObsidianUrl(url: string): void {
 		console.log('Opening Obsidian URL:', url);
