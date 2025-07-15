@@ -1,3 +1,10 @@
+# Obsidian Web Clipper+
+This updated Web Clipper makes use of the Actions URI plugin in Obsidian to append and prepend to files better. Note that you will have to specify the correct vault as it cannot currently calculate the last-used vault. You must have the [Actions URI Plugin](https://github.com/czottmann/obsidian-actions-uri) installed and enabled to make use of the updater clipper.
+I made this because I was sick of my appends having a newline between them and the list elements above them when clipping to list items.
+
+Open to requests. Below the line is [the original README from obsidianmd's Web Clipper repo](https://github.com/obsidianmd/obsidian-clipper).
+
+---
 Obsidian Web Clipper helps you highlight and capture the web in your favorite browser. Anything you save is stored as durable Markdown files that you can read offline, and preserve for the long term.
 
 - **[Download Web Clipper](https://obsidian.md/clipper)**
