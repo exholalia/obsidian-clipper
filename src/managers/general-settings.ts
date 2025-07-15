@@ -139,12 +139,24 @@ async function initializeVersionDisplay(): Promise<void> {
 }
 
 async function initializeDisableSafariAllowPopup(): Promise<void> {
+	const dev = DEBUG_MODE;
 	const disableSafariAllowPopupSection = document.getElementById('disable-safari-allow-popup');
 	const currentBrowser = await detectBrowser();
-	if (currentBrowser === 'safari' || currentBrowser === 'mobile-safari') { //TODO: checkiPadOS
+	
+	if (dev) {
+		// In dev mode, always show the Safari popup section for testing
+		console.log('Dev mode: Enabling Safari popup section for testing purposes');
+		if (disableSafariAllowPopupSection) {
+			disableSafariAllowPopupSection.style.display = 'block';
+		}
+		disableSafariAllowPopup();
+		return;
+	}
+	
+	if (currentBrowser === 'safari' || currentBrowser === 'mobile-safari' || currentBrowser === 'ipad-os') {
 		disableSafariAllowPopup();
 	} else {
-		console.log('Not Safari, skipping disableSafariAllowPopup');
+		console.log('Not Safari, skipping disableSafariAllowPopup.');
 		if (disableSafariAllowPopupSection) {
 			disableSafariAllowPopupSection.style.display = 'none';
 		}

@@ -126,3 +126,8 @@ export interface Footnote {
 	url: string;
 	text: string;
 }
+
+// Global variables defined by webpack
+declare global {
+	const DEBUG_MODE: boolean;
+}
