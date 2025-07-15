@@ -8,6 +8,7 @@ import { createElementWithClass, createElementWithHTML } from '../utils/dom-util
 import { createDefaultTemplate, getTemplates, saveTemplateSettings } from '../managers/template-manager';
 import { updateTemplateList, showTemplateEditor } from '../managers/template-ui';
 import { exportAllSettings, importAllSettings } from '../utils/import-export';
+import { disableSafariAllowPopup } from '../utils/disable-safari-allow-popup';
 import { Template } from '../types/types';
 import { exportHighlights } from './highlights-manager';
 import { getMessage, setupLanguageAndDirection } from '../utils/i18n';
@@ -137,6 +138,19 @@ async function initializeVersionDisplay(): Promise<void> {
 	}
 }
 
+async function initializeDisableSafariAllowPopup(): Promise<void> {
+	const disableSafariAllowPopupSection = document.getElementById('disable-safari-allow-popup');
+	const currentBrowser = await detectBrowser();
+	if (currentBrowser === 'safari' || currentBrowser === 'mobile-safari') { //TODO: checkiPadOS
+		disableSafariAllowPopup();
+	} else {
+		console.log('Not Safari, skipping disableSafariAllowPopup');
+		if (disableSafariAllowPopupSection) {
+			disableSafariAllowPopupSection.style.display = 'none';
+		}
+	}
+}
+
 export function initializeGeneralSettings(): void {
 	loadSettings().then(async () => {
 		await setupLanguageAndDirection();
@@ -192,6 +206,7 @@ export function initializeGeneralSettings(): void {
 		initializeAutoSave();
 		initializeResetDefaultTemplateButton();
 		initializeExportImportAllSettingsButtons();
+		initializeDisableSafariAllowPopup();
 		initializeHighlighterSettings();
 		initializeExportHighlightsButton();
 		initializeSaveBehaviorDropdown();
